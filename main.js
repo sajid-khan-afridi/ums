@@ -32,3 +32,6 @@ const sObj1 = new Student("Ali", "22", "1");
 sObj1.registerForCourses("Metaverse");
 sObj1.registerForCourses("Block Chain");
 console.log(sObj1);
+const iObj1 = new Instructor("Hamzah", "22", 100000);
+iObj1.assignCourse("Metaverse");
+console.log(iObj1);
