@@ -11,13 +11,13 @@ class Person {
 }
 class Student extends Person {
   rollNumber: string;
-  courses: string[] = [];
+  courses: Course[] = [];
   constructor(name: string, age: string, rollNumber: string) {
     super(name, age);
     this.rollNumber = rollNumber;
   }
-  registerForCourses(courses: string) {
-    this.courses.push(courses);
+  registerForCourses(course: Course) {
+    this.courses.push(course);
   }
 }
 
@@ -33,11 +33,34 @@ class Instructor extends Person {
   }
 }
 
-const sObj1 = new Student("Ali", "22", "1");
-sObj1.registerForCourses("Metaverse");
-sObj1.registerForCourses("Block Chain");
-console.log(sObj1);
+class Course {
+  id: string;
+  name: string;
+  student: Student[] = [];
+  instructor!: Instructor;
+  constructor(id: string, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+  addStudent(student: Student) {
+    this.student.push(student);
+    student.registerForCourses(this);
+  }
+  setInstructor(instructor: Instructor) {
+    this.instructor = instructor;
+  }
+}
 
-const iObj1 = new Instructor("Hamzah", "22", 100000);
-iObj1.assignCourse("Metaverse");
-console.log(iObj1);
+const sObj1 = new Student("Ali", "18", "1");
+const sObj2 = new Student("Basit", "18", "2");
+
+const iObj1 = new Instructor("Faisal", "22", 100000);
+const iObj2 = new Instructor("Hamzah", "22", 100000);
+
+const cObj1 = new Course("course1", "Metaverse");
+cObj1.addStudent(sObj1);
+cObj1.addStudent(sObj2);
+console.log(cObj1.student);
+console.log(sObj1.courses);
+
+const cObj2 = new Course("course2", "Block Chain");
