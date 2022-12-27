@@ -23,12 +23,12 @@ class Student extends Person {
 
 class Instructor extends Person {
   salary: number;
-  courses: string[] = [];
+  courses: Course[] = [];
   constructor(name: string, age: string, salary: number) {
     super(name, age);
     this.salary = salary;
   }
-  assignCourse(course: string) {
+  assignCourse(course: Course) {
     this.courses.push(course);
   }
 }
@@ -44,11 +44,12 @@ class Course {
   }
   addStudent(student: Student) {
     this.student.push(student);
-    student.registerForCourses(this);
+    student.registerForCourses(this); //passing full object of the course
   }
   setInstructor(instructor: Instructor) {
     this.instructor = instructor;
-  }
+    instructor.assignCourse(this); //Due to this we know the instructor course
+  } //the current course is pass to the instructor via this
 }
 
 const sObj1 = new Student("Ali", "18", "1");
@@ -61,7 +62,10 @@ const cObj1 = new Course("course1", "Metaverse");
 
 cObj1.addStudent(sObj1);
 cObj1.addStudent(sObj2);
-console.log(cObj1.student);
-console.log(sObj1.courses);
+
+cObj1.setInstructor(iObj1);
+
+// console.log(cObj1);
+// console.log(cObj1.instructor);
 
 const cObj2 = new Course("course2", "Block Chain");

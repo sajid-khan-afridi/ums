@@ -36,11 +36,12 @@ class Course {
     }
     addStudent(student) {
         this.student.push(student);
-        student.registerForCourses(this);
+        student.registerForCourses(this); //passing full object of the course
     }
     setInstructor(instructor) {
         this.instructor = instructor;
-    }
+        instructor.assignCourse(this); //Due to this we know the instructor course
+    } //the current course is pass to the instructor via this
 }
 const sObj1 = new Student("Ali", "18", "1");
 const sObj2 = new Student("Basit", "18", "2");
@@ -49,6 +50,7 @@ const iObj2 = new Instructor("Hamzah", "22", 100000);
 const cObj1 = new Course("course1", "Metaverse");
 cObj1.addStudent(sObj1);
 cObj1.addStudent(sObj2);
-console.log(cObj1.student);
-console.log(sObj1.courses);
+cObj1.setInstructor(iObj1);
+// console.log(cObj1);
+// console.log(cObj1.instructor);
 const cObj2 = new Course("course2", "Block Chain");
