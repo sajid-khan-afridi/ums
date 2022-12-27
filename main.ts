@@ -52,6 +52,17 @@ class Course {
   } //the current course is pass to the instructor via this
 }
 
+class Department {
+  name: string;
+  courses: Course[] = [];
+  constructor(name: string) {
+    this.name = name;
+  }
+  addCourse(course: Course) {
+    this.courses.push(course);
+  }
+}
+
 const sObj1 = new Student("Ali", "18", "1");
 const sObj2 = new Student("Basit", "18", "2");
 
@@ -59,13 +70,19 @@ const iObj1 = new Instructor("Faisal", "22", 100000);
 const iObj2 = new Instructor("Hamzah", "22", 100000);
 
 const cObj1 = new Course("course1", "Metaverse");
+const cObj2 = new Course("course2", "Block Chain");
 
 cObj1.addStudent(sObj1);
 cObj1.addStudent(sObj2);
-
 cObj1.setInstructor(iObj1);
+
+const dObj1 = new Department("Computer Science");
+// adding department in course
+dObj1.addCourse(cObj1);
+dObj1.addCourse(cObj2);
+//here the rest parameter and add multiple courses
+// then you will recieve an array and the concatenate with another array or spread operator is used.
+console.log(dObj1);
 
 // console.log(cObj1);
 // console.log(cObj1.instructor);
-
-const cObj2 = new Course("course2", "Block Chain");
