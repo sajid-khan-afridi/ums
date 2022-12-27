@@ -58,6 +58,7 @@ const iObj1 = new Instructor("Faisal", "22", 100000);
 const iObj2 = new Instructor("Hamzah", "22", 100000);
 
 const cObj1 = new Course("course1", "Metaverse");
+
 cObj1.addStudent(sObj1);
 cObj1.addStudent(sObj2);
 console.log(cObj1.student);
